@@ -15,10 +15,20 @@
 
 <body>
     <header>
-        <h1>Phone Review</h1>
+        <section class="container">
+            <h2 class="text-center text-primary m-3">Phone Review</h2>
+            <div class="d-flex w-50 mx-auto">
+                <input id="search-box" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button onclick="searchResult()" class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+        </section>
     </header>
     <main>
+        <section class="container my-5">
+            <div id="phone-container" class="row row-cols-1 row-cols-md-3 g-5">
 
+            </div>
+        </section>
     </main>
     <!-- Bootstrap Javascript Link -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
