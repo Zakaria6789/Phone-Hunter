@@ -1,0 +1,4 @@
+table tr td:first-child{
+    width: 300px;
+    border-right: 1px solid rgb(222, 226, 230);
+}
