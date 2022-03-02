@@ -96,12 +96,12 @@ const phoneDetail = (phone) => {
                     <td>${phone?.name ? phone?.name : 'Not Found'}</td>
                 </tr>
                 <tr>
-                    <td>Brand</td>
-                    <td>${phone?.brand ? phone?.brand : 'Not Found'}</td>
-                </tr>
-                <tr>
                     <td>Release Date</td>
                     <td>${phone.releaseDate ? phone.releaseDate : 'Release Date Not Found'}</td>
+                </tr>
+                <tr>
+                    <td>Brand</td>
+                    <td>${phone?.brand ? phone?.brand : 'Not Found'}</td>
                 </tr>
                 <tr>
                     <td class="h5">Main Features</td>
