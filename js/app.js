@@ -1,23 +1,29 @@
 const phoneContainer = document.getElementById('phone-container');
 const notFoundError = document.getElementById('error-text');
 const detailContainer = document.getElementById('detail-container');
+const loadingSpinner = document.getElementById('loading-spinner');
 
 
-const searchResult = () => {
+const searchResult = async () => {
+    loadingSpinner.style.display = 'block';
+    notFoundError.innerText = '';
     const searchBox = document.getElementById('search-box');
     const searchText = searchBox.value;
     searchBox.value = '';
     if (searchText == '') {
-        notFoundError.innerText = 'Type something to get result...';
+
+        notFoundError.innerText = 'Type Something To Get Result...';
         phoneContainer.innerHTML = '';
         detailContainer.innerHTML = '';
+        loadingSpinner.style.display = 'none';
+
     }
     else {
         detailContainer.style.display = 'none';
-        fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`)
-            .then(res => res.json())
-            .then(data => allphones(data.data.slice(0, 20)));
-
+        const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
+        const data = await res.json();
+        allphones(data.data.slice(0, 20));
+        loadingSpinner.style.display = 'none';
     }
 }
 
@@ -61,10 +67,12 @@ const allphones = (phones) => {
 
 
 
-const phoneDetailsDataLoad = (id) => {
-    fetch(`https://openapi.programming-hero.com/api/phone/${id}`)
-        .then(res => res.json())
-        .then(data => phoneDetail(data.data));
+const phoneDetailsDataLoad = async (id) => {
+    loadingSpinner.style.display = 'block';
+    const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
+    const data = await res.json();
+    phoneDetail(data.data);
+    loadingSpinner.style.display = 'none';
 }
 
 
