@@ -28,7 +28,6 @@ const searchResult = async () => {
     }
     else {
         isDisplay(detailContainer, 'none');
-        fetchData()
         const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
         const data = await res.json();
         allphones(data.data.slice(0, 20));
