@@ -75,10 +75,10 @@ const phoneDetail = (phone) => {
     detailContainer.innerHTML = '';
     const div = document.createElement('div');
     div.innerHTML = `
-         <div class="text-center mb-5">
+        <div class="text-center mb-5 detail-img">
             <img width="280px" src="${phone?.image}" alt="">
-         </div>
-         <table class="table table-striped w-50 mx-auto border">
+        </div>
+         <table class="table table-striped border">
             <tbody>
                 <tr>
                     <td>Name</td>
@@ -93,7 +93,7 @@ const phoneDetail = (phone) => {
                     <td>${phone.releaseDate ? phone.releaseDate : 'Release Date Not Found'}</td>
                 </tr>
                 <tr>
-                    <td class="h4">Main Features</td>
+                    <td class="h5">Main Features</td>
                     <td></td>
                 </tr>
                 <tr>
@@ -110,14 +110,14 @@ const phoneDetail = (phone) => {
                 </tr>
                 <tr>
                     <td>Sensors</td>
-                    <td>${phone?.mainFeatures?.sensors ? phone?.mainFeatures?.sensors : 'Not Found'}</td>
+                    <td class="sensors">${phone?.mainFeatures?.sensors ? phone?.mainFeatures?.sensors : 'Not Found'}</td>
                 </tr>
                 <tr>
                     <td>Storage</td>
                     <td>${phone?.mainFeatures?.storage ? phone?.mainFeatures?.storage : 'Not Found'}</td>
                 </tr>
                 <tr>
-                    <td class="h4">Others</td>'Not Found'
+                    <td class="h5">Others</td>
                     <td></td>
                 </tr>
                 <tr>

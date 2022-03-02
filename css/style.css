@@ -1,21 +1,40 @@
 html,body{
     overflow-x: hidden;
 }
-
+.search-box{
+    width: 70%;
+    margin: 0px auto;
+}
+#detail-container table{
+    width: 70%;
+    margin: 0px auto;
+}
 table tr td:first-child{
-    /* width: 300px; */
+    width: 150px;
     border-right: 1px solid rgb(222, 226, 230);
 }
-
-
-
-
-.search-box{
-    width: 50%;
+table tr td.sensors{
+    /* background-color: red; */
+    word-break: break-all;
+    /* word-wrap: break-word; */
 }
 
-@media screen and (min-width: 300px) and (max-width: 425px) {
+
+
+
+
+
+@media screen and (max-width: 425px) {
     .search-box{
-        width: 90%;
+        width: 100%;
+    }
+     #detail-container table{
+        width: 100%;
+    } 
+    table tr td:first-child{
+        width: 108px;
+    } 
+    .detail-img img{
+        width: 220px;
     }
 }
