@@ -1,47 +1,52 @@
-const phoneContainer = document.getElementById('phone-container');
-const notFoundError = document.getElementById('error-text');
-const detailContainer = document.getElementById('detail-container');
-const loadingSpinner = document.getElementById('loading-spinner');
+///////////////////// All Global Variables///////////////////////
 const searchBox = document.getElementById('search-box');
+const phoneContainer = document.getElementById('phone-container');
+const detailContainer = document.getElementById('detail-container');
+const notFoundError = document.getElementById('error-text');
+const loadingSpinner = document.getElementById('loading-spinner');
 
-const searchResult = async () => {
-    loadingSpinner.style.display = 'block';
-    notFoundError.innerText = '';
+
+///////////////////// Shared/Common Function//////////////////////
+const emptyContent = () => {
     phoneContainer.innerHTML = '';
     detailContainer.innerHTML = '';
+}
+const isDisplay = (id, displayValue) => id.style.display = displayValue;
+const notFoundMassage = (massage) => notFoundError.innerText = massage;
 
 
+///////////////////// Get Search Result (Data Load)////////////////////
+const searchResult = async () => {
+    isDisplay(loadingSpinner, 'block');
+    notFoundMassage('');
+    emptyContent();
     const searchText = searchBox.value;
-
     if (searchText == '') {
-
-        notFoundError.innerText = 'Type Something To Get Result...';
-        phoneContainer.innerHTML = '';
-        detailContainer.innerHTML = '';
-        loadingSpinner.style.display = 'none';
-
+        notFoundMassage('Type Something To Get Result...');
+        emptyContent();
+        isDisplay(loadingSpinner, 'none');
     }
     else {
-        detailContainer.style.display = 'none';
+        isDisplay(detailContainer, 'none');
+        fetchData()
         const res = await fetch(`https://openapi.programming-hero.com/api/phones?search=${searchText}`);
         const data = await res.json();
         allphones(data.data.slice(0, 20));
-        loadingSpinner.style.display = 'none';
+        isDisplay(loadingSpinner, 'none');
     }
     searchBox.value = '';
 }
 
 
-
+////////////////////// Get Search Result///////////////////////
 const allphones = (phones) => {
     if (phones.length == 0) {
-        notFoundError.innerText = 'Result Not Found...';
-        phoneContainer.innerHTML = '';
-        detailContainer.innerHTML = '';
+        notFoundMassage('Result Not Found...');
+        emptyContent();
     }
     else {
-        notFoundError.innerText = '';
-        phoneContainer.textContent = '';
+        notFoundMassage('');
+        phoneContainer.innerHTML = '';
         phones.forEach(phone => {
             console.log(phone);
             const div = document.createElement('div');
@@ -66,25 +71,19 @@ const allphones = (phones) => {
 }
 
 
-
-
-
-
-
-
+//////////////////////// Item Details (Data Load)///////////////////
 const phoneDetailsDataLoad = async (id) => {
-    loadingSpinner.style.display = 'block';
+    isDisplay(loadingSpinner, 'block');
     const res = await fetch(`https://openapi.programming-hero.com/api/phone/${id}`);
     const data = await res.json();
     phoneDetail(data.data);
-    loadingSpinner.style.display = 'none';
+    isDisplay(loadingSpinner, 'none');
 }
 
 
-
-
+//////////////////////////// Item Details/////////////////////////
 const phoneDetail = (phone) => {
-    detailContainer.style.display = 'block';
+    isDisplay(detailContainer, 'block');
     detailContainer.innerHTML = '';
     const div = document.createElement('div');
     div.innerHTML = `
