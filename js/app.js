@@ -2,14 +2,17 @@ const phoneContainer = document.getElementById('phone-container');
 const notFoundError = document.getElementById('error-text');
 const detailContainer = document.getElementById('detail-container');
 const loadingSpinner = document.getElementById('loading-spinner');
-
+const searchBox = document.getElementById('search-box');
 
 const searchResult = async () => {
     loadingSpinner.style.display = 'block';
     notFoundError.innerText = '';
-    const searchBox = document.getElementById('search-box');
+    phoneContainer.innerHTML = '';
+    detailContainer.innerHTML = '';
+
+
     const searchText = searchBox.value;
-    searchBox.value = '';
+
     if (searchText == '') {
 
         notFoundError.innerText = 'Type Something To Get Result...';
@@ -25,8 +28,8 @@ const searchResult = async () => {
         allphones(data.data.slice(0, 20));
         loadingSpinner.style.display = 'none';
     }
+    searchBox.value = '';
 }
-
 
 
 
@@ -61,6 +64,8 @@ const allphones = (phones) => {
         })
     }
 }
+
+
 
 
 
